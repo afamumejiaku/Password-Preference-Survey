@@ -1,0 +1,193 @@
+</select>
+    </div><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="{{ url_for('feedback') }}">
+            <div class="password-box">
+                <h3>The long passwords you entered was : {{ long_password }} </h3>
+                <p>
+                    Password Strength: {{ long_strength.replace('\n', '<br>')|safe}} 
+                </p>
+                <label for="memorable-result_long_password">How memorable do you feel this password  is?</label>
+                <select id="memorable-result_long_password" name="memorable-result_long_password">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result_long_password">How likely are you to use this password in real life?</label>
+                <select id="usage-result_long_password" name="usage-result_long_password">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+            <h3>The short passwords you entered was : {{ short_password }}</h3>
+            <p>
+            Password Strength: {{ short_strength.replace('\n', '<br>')|safe}} 
+            </p>
+        
+            <label for="memorable-result_short_password">How memorable do you feel this password  is?</label>
+            <select id="memorable-result_short_password" name="memorable-result_short_password">
+                {% for option in dropdown_options['memorable'] %}
+                <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="usage-result_short_password">How likely are you to use this password in real life?</label>
+            <select id="usage-result_short_password" name="usage-result_short_password">
+                {% for option in dropdown_options['usage'] %}
+                <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+            </div>
+    
+            <div class="password-box">
+                <h3>Modified Password (All vowels replaced with random characters) : {{ result1 }} </h3>
+                <p>
+                    Password Strength: {{ strength1.replace('\n', '<br>')|safe}}
+                    <!-- Log Guesses Higher is Better: {{ log_guesses1 }}<br>
+                    Entropy Higer is Better: {{ entropy1 }}<br>
+                    Similarity to Old password: {{ similarity1 }}/1.00 -->
+                </p>
+                <label for="memorable-result1">How memorable do you feel this password  is?</label>
+                <select id="memorable-result1" name="memorable-result1">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result1">How likely are you to use this password in real life?</label>
+                <select id="usage-result1" name="usage-result1">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+                <h3>Modified Password (One Vowel Replaced with random characters) : {{ result2 }}</h3>
+                <p>
+                    Password Strength: {{ strength2.replace('\n', '<br>')|safe}} 
+                <!-- Log Guesses Higher is Better: {{ log_guesses2 }}<br>
+                    Entropy Higer is Better: {{ entropy2 }}<br>
+                    Similarity to Old password: {{ similarity2 }}/1.00 -->
+                </p>
+                <label for="memorable-result2">How memorable do you feel this password  is?</label>
+                <select id="memorable-result2" name="memorable-result2">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result2">How likely are you to use this password in real life?</label>
+                <select id="usage-result2" name="usage-result2">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+                <h3>Modified Password (A four-character mnemonic chunk added to the password) : {{ result3 }}</h3>
+                <p>
+                    Password Strength: {{ strength3.replace('\n', '<br>')|safe}} 
+                <!-- Log Guesses Higher is Better: {{ log_guesses3 }}<br>
+                    Entropy Higer is Better: {{ entropy3 }}<br>
+                    Similarity to Old password: {{ similarity3 }}/1.00 -->
+                </p>    
+                <label for="memorable-result3">How memorable do you feel this password  is?</label>
+                <select id="memorable-result3" name="memorable-result3">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result3">How likely are you to use this password in real life?</label>
+                <select id="usage-result3" name="usage-result3">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+                <h3>Modified Password (One Vowel Replaced and add a mnemonic chunk) : {{ result4 }}</h3>
+                <p>
+                    Password Strength: {{ strength4.replace('\n', '<br>')|safe}}
+                <!-- Log Guesses Higher is Better: {{ log_guesses4 }}<br>
+                    Entropy Higer is Better: {{ entropy4 }}<br>
+                    Similarity to Old password: {{ similarity4 }}/1.00 -->
+                </p>
+                <label for="memorable-result4">How memorable do you feel this password  is?</label>
+                <select id="memorable-result4" name="memorable-result4">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result4">How likely are you to use this password in real life?</label>
+                <select id="usage-result4" name="usage-result4">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+                <h3>Modified Password (All vowels replaced with a mnemonic chunk) : {{ result5 }}</h3>
+                <p>
+                    Password Strength: {{ strength5.replace('\n', '<br>')|safe}}
+                <!-- Log Guesses Higher is Better: {{ log_guesses5}}<br>
+                    Entropy Higer is Better: {{ entropy5}}<br>
+                    Similarity to Old password: {{ similarity5 }}/1.00 -->
+                </p>
+                <label for="memorable-result5">How memorable do you feel this password  is?</label>
+                <select id="memorable-result5" name="memorable-result5">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-result5">How likely are you to use this password in real life?</label>
+                <select id="usage-result5" name="usage-result5">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="password-box">
+                <h3>A password generated using words you provided and an AI model : {{ newpassword }}</h3>
+                <p>
+                    Words used include
+                    {% if words %}
+                    {% for word in words %}
+                    {{ word}}       
+                    {% endfor %}
+                    {% endif %}<br>
+                    Password Strength: {{ strength_newpassword.replace('\n', '<br>')|safe}}
+                <!-- Log Guesses Higher is Better: {{ log_guesses_newpassword}}<br>
+                    Entropy Higer is Better: {{ entropy_newpassword}}<br>
+                    Similarity to Old password: {{ similarity_newpassword }}/1.00 -->
+                </p>    
+                <label for="memorable-newpassword">How memorable do you feel this password  is?</label>
+                <select id="memorable-newpassword" name="memorable-newpassword">
+                    {% for option in dropdown_options['memorable'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select><br>
+                <label for="usage-newpassword">How likely are you to use this password in real life?</label>
+                <select id="usage-newpassword" name="usage-newpassword">
+                    {% for option in dropdown_options['usage'] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Submit Feedback</button>
+        </form>       
+    </div>
+</body>
+</html>

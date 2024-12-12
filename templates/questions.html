@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Questions</title>
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Survey Questions</h1>
+        <p>Please answer all the questions below. Fields marked with <span style="color: red;">*</span> are required.</p>
+
+        <!-- Survey Form -->
+        <form method="POST" action="/questions">
+            {% for question in questions %}
+            <div class="question">
+                <label for="question-{{ question.id }}">{{ question.question }} <span style="color: red;">*</span></label>
+                {% if question.type == "dropdown" %}
+                    <select id="question-{{ question.id }}" name="{{ question.id }}" required>
+                        <option value="" disabled selected>Choose an option</option>
+                        {% for option in question.options %}
+                        <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input 
+                        type="{{ question.type }}" 
+                        id="question-{{ question.id }}" 
+                        name="{{ question.id }}" 
+                        placeholder="Enter your {{ question.question.lower() }}" 
+                        required
+                        value="{{ responses[question.id] if question.id in responses else '' }}">
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <!-- Additional Form for Username and Passwords -->
+            <h2>Enter Your Credentials</h2>
+            <div class="form-group">
+                <label for="username">Username <span style="color: green;">*</span></label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" value="{{ username }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="long_password">Long Password <span style="color: red;">*</span></label>
+                <input type="password" id="long_password" name="long_password" placeholder="Please enter a long password." minlength="12" required>
+            </div>
+            <div class="form-group">
+                <label for="short_password">Short Password <span style="color: red;">*</span></label>
+                <input type="password" id="short_password" name="short_password" placeholder="Please enter a short password." maxlength="11" required>
+            </div>
+
+
+            <!-- Additional Form for Words or Values -->
+            <h2>Words or Values Related to Your Passwords</h2>
+            <p>List up to 5 words or values that came to mind when you created your passwords above. </p>
+            <div class="form-group">
+                <label for="word1">Word/Value 1:</label>
+                <input type="text" id="word1" name="word1" placeholder="Enter a word or value">
+            </div>
+            <div class="form-group">
+                <label for="word2">Word/Value 2:</label>
+                <input type="text" id="word2" name="word2" placeholder="Enter a word or value">
+            </div>
+            <div class="form-group">
+                <label for="word3">Word/Value 3:</label>
+                <input type="text" id="word3" name="word3" placeholder="Enter a word or value">
+            </div>
+            <div class="form-group">
+                <label for="word4">Word/Value 4:</label>
+                <input type="text" id="word4" name="word4" placeholder="Enter a word or value">
+            </div>
+            <div class="form-group">
+                <label for="word5">Word/Value 5:</label>
+                <input type="text" id="word5" name="word5" placeholder="Enter a word or value">
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-actions">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+
+        {% if error_message %}
+        <!-- Error Message -->
+        <div style="color: red; margin-top: 10px;">
+            {{ error_message }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

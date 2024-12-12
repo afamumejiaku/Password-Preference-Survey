@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Preferences Survey</title>
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Optional CSS for styling -->
+</head>
+<body>
+    <div class="container">
+        <h1>Password Preferences Survey</h1>
+        <p>
+            Welcome to our Password Preferences Survey! This survey aims to understand how people create passwords and their preferences in choosing secure passwords. Your responses will help us gain insights into password strength and usability trends, which are crucial for improving cybersecurity measures.
+        </p>
+        <p>
+            On the next page, we will ask you to provide a sample password. <strong>Please do not use a password that you currently use for any of your accounts.</strong> Instead, create a new password that reflects the strength and style of one you might typically use. This ensures your privacy and security.
+        </p>
+        <p>Before proceeding to the questionnaire, please provide some brief demographic information:</p>
+        
+        <!-- Demographics Form -->
+        <form method="POST" action="/">
+            <!-- Age Group -->
+            <div class="form-group">
+                <label for="age_group">Select your age group:</label>
+                <select id="age_group" name="age_group" required>
+                    <option value="" disabled selected>Select your age group</option>
+                    <option value="5-18">5-18</option>
+                    <option value="18-25">18-25</option>
+                    <option value="25-35">25-35</option>
+                    <option value="35-50">35-50</option>
+                    <option value="50+">Older than 50</option>
+                </select>
+            </div>
+
+            <!-- Employment Status -->
+            <div class="form-group">
+                <label for="employment_status">What best describes your current occupation or situation?</label>
+                <select id="employment_status" name="employment_status" required>
+                    <option value="" disabled selected>Select your occupation or situation</option>
+                    <option value="Unemployed">Unemployed or looking for work</option>
+                    <option value="Undergraduate">Undergraduate Student</option>
+                    <option value="Graduate">Graduate Student</option>
+                    <option value="Creative">Creative Professional (e.g., Art, Communications, Media)</option>
+                    <option value="Business">Business, Sales, or Marketing Professional</option>
+                    <option value="Educator">Educator (e.g., teacher, professor)</option>
+                    <option value="Healthcare">Healthcare, Social Services, or Hospitality Worker</option>
+                    <option value="Science">IT, Science, Construction, or Engineering Professional</option>
+                    <option value="Law">Legal, Law Enforcement or Security Professional</option>
+                    <option value="Transportation">Transportation or Logistics Worker</option>
+                    <option value="Investor">Investor or Finance Professional</option>
+                </select>
+            </div>
+
+            <!-- Race -->
+            <div class="form-group">
+                <label for="race">Select your race:</label>
+                <select id="race" name="race" required>
+                    <option value="" disabled selected>Select your race</option>
+                    <option value="White">White</option>
+                    <option value="Black or African American">Black or African American</option>
+                    <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit">Proceed to the Questionnaire</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

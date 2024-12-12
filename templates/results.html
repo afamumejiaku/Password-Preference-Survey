@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results</title>
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Optional CSS link -->
+</head>
+<body>
+    <div class="container">
+        <h1>Survey Results</h1>
+
+        <!-- Display Survey Responses -->
+        {% if grouped_responses %}
+        <h2>Survey Answers</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Question ID</th>
+                    <th>Question</th>
+                    {% for i in range(max_answers) %}
+                    <th>Answer {{ i + 1 }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for question_id, data in grouped_responses.items() %}
+                <tr>
+                    <td>{{ question_id }}</td>
+                    <td>{{ data.question_text }}</td>
+                    {% for answer in data.answers %}
+                    <td>{{ answer }}</td>
+                    {% endfor %}
+                    {% for i in range(max_answers - data.answers|length) %}
+                    <td></td> <!-- Empty cells for missing answers -->
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No responses have been recorded yet.</p>
+        {% endif %}
+
+
+        <!-- Demographic Information -->
+        <h2>Demographic Information</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Age Group</th>
+                    <th>Employment Status</th>
+                    <th>Race</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for demographic in demographics %}
+                <tr>
+                    <td>{{ demographic.age_group }}</td>
+                    <td>{{ demographic.employment_status }}</td>
+                    <td>{{ demographic.race }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+        <!-- Display User Credentials -->
+        {% if credentials %}
+        <h2>User Credentials</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Long Password</th>
+                    <th>Short Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for credential in credentials %}
+                <tr>
+                    <td>{{ credential.username }}</td>
+                    <td>{{ credential.long_password }}</td>
+                    <td>{{ credential.short_password }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No user credentials have been recorded yet.</p>
+        {% endif %}
+
+        <!-- Display Password Feedback-->
+        <h2>Password Feedback</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Password Type</th>
+                    <th>Password Value</th>
+                    <th>Memorable Rating</th>
+                    <th>Usability Rating</th>
+                    <th>Password Log_guesses</th>
+                    <th>Password Entropy</th>
+                    <th>Password Similarity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in password_feedback %}
+                <tr>
+                    <td>{{ feedback.password_type }}</td>
+                    <td>{{ feedback.password_value }}</td>
+                    <td>{{ feedback.memorable_rating }}</td>
+                    <td>{{ feedback.usability_rating }}</td>
+                    <td>{{ feedback.password_log_guesses }}</td>
+                    <td>{{ feedback.password_entropy }}</td>
+                    <td>{{ feedback.password_similarity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <br>
+        <a href="/">Go Back to Home</a>
+    </div>
+</body>
+</html>
